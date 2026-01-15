@@ -1,0 +1,4 @@
+build/
+dist/
+*.egg-info/
+manifold_src/plausible_knots.sqlite

@@ -1,4 +1,4 @@
-long_description ="""\ 
+long_description ="""\
 This package provides a database of knots with at most 19 crossings
 that are "plausibly slice" in that they have signature 0 and a
 normalized Alexander polynomial that factors as f(t) f(t^-1) as in
@@ -10,6 +10,7 @@ from setuptools import setup, Command
 from setuptools.command.build_py import build_py
 
 sqlite_files = ['plausible_knots.sqlite']
+
 
 def check_call(args):
     try:
@@ -27,7 +28,7 @@ class Clean(Command):
     """
     user_options = []
     def initialize_options(self):
-        pass 
+        pass
     def finalize_options(self):
         pass
     def run(self):
@@ -44,7 +45,7 @@ class BuildPy(build_py):
     """
     def initialize_options(self):
         build_py.initialize_options(self)
-        os.chdir('manifold_src')        
+        os.chdir('manifold_src')
         csv_source_files = glob.glob(
             os.path.join('original_manifold_sources', '*.csv*'))
         # When there are no csv files, we are in an sdist tarball
@@ -56,89 +57,14 @@ class BuildPy(build_py):
             check_call([sys.executable, 'make_sqlite_db.py'])
         os.chdir('..')
 
-class Release(Command):
-    user_options = [('install', 'i', 'install the release into each Python')]
-    def initialize_options(self):
-        self.install = False
-    def finalize_options(self):
-        pass
-    def run(self):
-        pythons = os.environ.get('RELEASE_PYTHONS', sys.executable).split(',')
-        check_call([pythons[0], 'setup.py', 'clean'])
-        check_call([pythons[0], 'setup.py', 'bdist_wheel', '--universal'])
-        check_call([pythons[0], 'setup.py', 'sdist'])
-        if self.install:
-            for python in pythons:
-                check_call([python, 'setup.py', 'pip_install', '--no-build-wheel'])
-
-
-class PipInstall(Command):
-    user_options = [('no-build-wheel', 'n', 'assume wheel has already been built')]
-    def initialize_options(self):
-        self.no_build_wheel = False
-    def finalize_options(self):
-        pass
-    def run(self): 
-        python = sys.executable
-        check_call([python, 'setup.py', 'build'])
-        if not self.no_build_wheel:
-            check_call([python, 'setup.py', 'bdist_wheel', '--universal'])
-        egginfo = 'plausible_knots.egg-info'
-        if os.path.exists(egginfo):
-            shutil.rmtree(egginfo)
-        wheels = glob.glob('dist' + os.sep + '*.whl')
-        new_wheel = max(wheels, key=os.path.getmtime)
-        check_call([python, '-m', 'pip', 'uninstall', '-y', 'plausible_knots'])
-        check_call([python, '-m', 'pip', 'install', '--upgrade',
-                    '--upgrade-strategy', 'only-if-needed',
-                    new_wheel])
-
-class Test(Command):
-    user_options = []
-    def initialize_options(self):
-        pass 
-    def finalize_options(self):
-        pass
-    def run(self):
-        build_lib_dir = os.path.join('build', 'lib')
-        sys.path.insert(0, build_lib_dir)
-        from plausible_knots.test import run_tests
-        sys.exit(run_tests())
-
-    
-# Get version number from module
-version = re.search("__version__ = '(.*)'",
-                    open('python_src/__init__.py').read()).group(1)
 
 setup(
-    name = 'plausible_knots',
-    version = version,
-    description = 'Database of plausibly slice knots',
-    long_description = long_description,
-    install_requires = ['snappy_manifolds'],
-    python_requires = '>=3',
-    author = 'Nathan M. Dunfield and Sherry Gong',
-    author_email = 'nathan@dunfield.info',
-    license='GPLv2+',
-    classifiers = [
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Science/Research',
-        'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Topic :: Scientific/Engineering :: Mathematics',
-        ],
     packages = ['plausible_knots', 'plausible_knots/sqlite_files'],
     package_dir = {'plausible_knots':'python_src',
                    'plausible_knots/sqlite_files':'manifold_src'},
     package_data = {'plausible_knots/sqlite_files': sqlite_files},
-    ext_modules = [],
     zip_safe = False,
-    cmdclass = {'release': Release,
-                'build_py': BuildPy,
+    cmdclass = {'build_py': BuildPy,
                 'clean': Clean,
-                'pip_install':PipInstall,
-                'test':Test
     },
 )
-

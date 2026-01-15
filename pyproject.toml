@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools >= 77.0.3", "requests"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plausible_knots"
+dynamic = ["version"]
+requires-python = ">=3.8"
+authors = [
+  {name = "Nathan M. Dunfield"},
+  {name = "Sherry Gong"},
+]
+description = "Database of plausibly slice knots"
+readme = "README.rst"
+license = "GPL-2.0-or-later"
+keywords = ["knots", "plausibly slice"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",	
+  "Intended Audience :: Science/Research",	
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "plausible_knots.__version__"}
+
+[project.urls]
+Homepage = "https://github.com/NathanDunfield/plausible_knots"
+Repository = "https://github.com/NathanDunfield/plausible_knots.git"
+"Bug Tracker" = "https://github.com/NathanDunfield/plausible_knots/issues"
