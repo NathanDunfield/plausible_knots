@@ -11,8 +11,9 @@ from setuptools import setup, Command
 from setuptools.command.build_py import build_py
 
 # Even compressed, the CSV files that describe the knots/manifolds
-# take up 400M.  They are stored on GitHub using the Large File
-# Storage system.  Here's code for fetching these.
+# take up 400M.  The sqlite file is even larger at 1.1G. They are
+# stored on GitHub using the Large File Storage system.  Here's code
+# for fetching these.
 
 pattern = ('version https://git-lfs.github.com/spec/v1\n'
            'oid sha256:([a-z0-9]+)\n'
