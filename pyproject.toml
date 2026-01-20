@@ -25,9 +25,6 @@ classifiers = [
 [tool.setuptools.dynamic]
 version = {attr = "plausible_knots.__version__"}
 
-[tool.setuptools.packages.find]
-exclude = ["manifold_sources/original_manifold_sources"]
-
 [project.urls]
 Homepage = "https://github.com/NathanDunfield/plausible_knots"
 Repository = "https://github.com/NathanDunfield/plausible_knots.git"
