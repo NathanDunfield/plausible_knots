@@ -6,11 +6,13 @@ with at most 19 crossings whose signature is 0 and whose Alexander
 polynomial satisfies the Fox-Milnor condition.  To install this Python
 module, navigate into this directory in your terminal and do::
 
-  python -m pip install .
+To install the latest version of this Python module, you can do::
+
+  python -m pip install plausible_knots
 
 If you are using SageMath, replace this with::
 
-  sage -pip install .
+  sage -pip install plausible_knots
 
 Assuming you have installed SnapPy into this Python, you can now start
 Python and do::
@@ -27,10 +29,10 @@ Python and do::
   >>> M.identify()
   [19nh_045358315(0,0)]
 
-The raw data, including the DT code for each knot, is included in CSV format::
+The raw data is available at::
 
-  manifold_src/original_manifold_sources/plausible_knots_19.csv.bz2
+  https://github.com/NathanDunfield/plausible_knots
 
-PD codes for each knot are available in::
+and also archived at::
 
-  ../data/PD_codes.csv.bz2
+  https://doi.org/10.7910/DVN/YBDTBT
