@@ -29,10 +29,6 @@ Python and do::
   >>> M.identify()
   [19nh_045358315(0,0)]
 
-The raw data is available at::
-
-  https://github.com/NathanDunfield/plausible_knots
-
-and also archived at::
-
-  https://doi.org/10.7910/DVN/YBDTBT
+The raw data is available on the `GitHub repository
+<https://github.com/NathanDunfield/plausible_knots>`_ and archived on
+the `Dataverse <https://doi.org/10.7910/DVN/YBDTBT>`_.
