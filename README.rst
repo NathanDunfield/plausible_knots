@@ -3,8 +3,7 @@ The SnapPy manifold database for plausibly slice knots
 
 The PlausibleKnots database consists of those nontrivial prime knots
 with at most 19 crossings whose signature is 0 and whose Alexander
-polynomial satisfies the Fox-Milnor condition.  To install this Python
-module, navigate into this directory in your terminal and do::
+polynomial satisfies the Fox-Milnor condition.
 
 To install the latest version of this Python module, you can do::
 
