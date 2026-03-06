@@ -21,7 +21,7 @@ Assuming you have installed SnapPy into this Python, you can now start
 Python and do::
 
   >>> import snappy
-  >>> import plausible_knots      # Skip if using Python 3.3.2 or newer.
+  >>> import plausible_knots      # Skip if using SnapPy 3.3.2 or newer.
   >>> len(snappy.PlausibleKnots)
   3869541
   >>> K = snappy.PlausibleKnots[100000]; K
