@@ -10,6 +10,12 @@ import requests
 from setuptools import setup, Command
 from setuptools.command.build_py import build_py
 
+
+pattern = ('version https://git-lfs.github.com/spec/v1\n'
+           'oid sha256:([a-z0-9]+)\n'
+           'size ([0-9]+)')
+
+
 url = 'https://github.com/NathanDunfield/plausible_knots/releases/download/'
 url += '2.1.1_as_released/plausible_knots.sqlite'
 
