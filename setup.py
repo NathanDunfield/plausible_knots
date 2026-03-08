@@ -15,6 +15,8 @@ pattern = ('version https://git-lfs.github.com/spec/v1\n'
            'oid sha256:([a-z0-9]+)\n'
            'size ([0-9]+)')
 
+# The underlying data hasn't changed since plausible_knots==2.1.1, so
+# we download the sqlite file from fhat release.
 
 url = 'https://github.com/NathanDunfield/plausible_knots/releases/download/'
 url += '2.1.1_as_released/plausible_knots.sqlite'
@@ -23,6 +25,10 @@ url += '2.1.1_as_released/plausible_knots.sqlite'
 def download_as_file(url, path):
     """
     Based on https://stackoverflow.com/questions/16694907/
+
+    When downloading a 1.1G file from GitHub on a university network,
+    it uses a constant amount of memory and is basically as fast as
+    ``wget``.
     """
     with requests.get(url, stream=True) as response:
         with open(path, 'wb') as file:
