@@ -23,8 +23,8 @@ version = '2.1.1'
 url = 'https://github.com/NathanDunfield/plausible_knots/releases/download/'
 url += f'{version}_as_released/plausible_knots.sqlite'
 
-print(url)
-sys.exit(0)
+# print(url)
+# sys.exit(0)
 
 def download_as_file(url, path):
     """
