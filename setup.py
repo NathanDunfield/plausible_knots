@@ -12,7 +12,7 @@ from setuptools.command.build_py import build_py
 
 
 init_file_contents = open('python_src/__init__.py').read()
-version = re.search('__version__\s*=\s*[\'"](.*)[\'"]', init_file_contents).group(1)
+version = re.search(r'__version__\s*=\s*[\'"](.*)[\'"]', init_file_contents).group(1)
 
 pattern = ('version https://git-lfs.github.com/spec/v1\n'
            'oid sha256:([a-z0-9]+)\n'
