@@ -14,17 +14,15 @@ from setuptools.command.build_py import build_py
 init_file_contents = open('python_src/__init__.py').read()
 version = re.search(r'__version__\s*=\s*[\'"](.*)[\'"]', init_file_contents).group(1)
 
+
 pattern = ('version https://git-lfs.github.com/spec/v1\n'
            'oid sha256:([a-z0-9]+)\n'
            'size ([0-9]+)')
 
-version = '2.1.1'
 
 url = 'https://github.com/NathanDunfield/plausible_knots/releases/download/'
 url += f'{version}_as_released/plausible_knots.sqlite'
 
-# print(url)
-# sys.exit(0)
 
 def download_as_file(url, path):
     """
